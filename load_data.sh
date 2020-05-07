@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 
+NUMBER_USERS=200
+NUMBER_ORGS=200
+
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 export ARROW_GLOBAL_CONFIG_PATH
 
@@ -43,12 +46,18 @@ python setup.py nosetests
 
 function addusers(){
   echo "adding users using arrow"
-  arrow users get_users
+#  echo arrow users get_users | jq '. | length'
+  arrow users get_users | jq '. | length' 2>&1 > users.txt
+  VALUE=`cat users.txt`
+  echo "Number of users : ${VALUE}"
+  if [ "$VALUE" -le "$NUMBER_USERS" ]
+  then
+    for user_number in {1..$NUMBER_USERS}
+    do
+      arrow users create_user user${user_number}@test.com user${user_number} lastname${user_number} demo --role user
+    done
+  fi
 
-for user_number in {1..200}
-do
-  arrow users create_user user${user_number}@test.com user${user_number} lastname${user_number} demo --role user
-done
 }
 
 time addusers
