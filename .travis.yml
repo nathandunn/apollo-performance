@@ -1,11 +1,21 @@
 language: python
+os: linux
 
 # sudo false implies containerized builds
-sudo: false
+#sudo: false
 
 python:
   - 3.5
-  - 3.6
+  - 3.8
+
+
+jobs:
+  include:
+    - stage: lint
+      install:
+        - pip install -U pip flake8
+      script:
+        - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
 #env:
 #  global:
@@ -29,14 +39,23 @@ python:
 #- conda install $CONDA_DEPS
 
 install:
-- pip install .
+  - pip install -U pip setuptools nose
 
 script:
-- sed  i 's|8888|8080/apollo|' `pwd`/test-data/arrow.yml
-- export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test data/arrow.yml
-- virtualenv .venv
-- . .venv/bin/activate
-- pip install apollo nose
-- ./bootstrap_apollo.sh  -nodocker
-- python setup.py nosetests
-- killall java || true
+  - python setup.py install
+  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+  - ./bootstrap_apollo.sh
+  - python setup.py nosetests
+#  - sed  i 's|8888|8080/apollo|' `pwd`/test-data/arrow.yml
+#  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test data/arrow.yml
+#  - virtualenv .venv
+#  - . .venv/bin/activate
+#  - pip install apollo nose
+#  - ./bootstrap_apollo.sh  -nodocker
+#  - python setup.py nosetests
+#  - killall java || true
+
+stages:
+  - lint
+  - test
+  - deploy
