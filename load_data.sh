@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 
 NUMBER_USERS=200
@@ -45,13 +45,12 @@ python setup.py nosetests
 function addusers(){
   echo "adding users using arrow"
 #  echo arrow users get_users | jq '. | length'
-  arrow users get_users | jq '. | length' 2>&1 > users.txt
-  VALUE=`cat users.txt`
+  FOUND_USERS=$(arrow users get_users | jq '. | length')
   rm -f users.txst
-  echo "Number of users : ${VALUE}"
-  if [ "$VALUE" -le "$NUMBER_USERS" ]
+  echo "Number of users : ${FOUND_USERS}"
+  if [ "$FOUND_USERS" -le "$NUMBER_USERS" ]
   then
-    for user_number in {1..$NUMBER_USERS}
+    for user_number in $(1..$NUMBER_USERS);
     do
       arrow users create_user user${user_number}@test.com user${user_number} lastname${user_number} demo --role user
     done
