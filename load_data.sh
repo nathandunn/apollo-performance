@@ -49,6 +49,7 @@ function addusers(){
 #  echo arrow users get_users | jq '. | length'
   arrow users get_users | jq '. | length' 2>&1 > users.txt
   VALUE=`cat users.txt`
+  rm -f users.txst
   echo "Number of users : ${VALUE}"
   if [ "$VALUE" -le "$NUMBER_USERS" ]
   then
