@@ -17,10 +17,12 @@ install:
   - pip install -U pip setuptools nose
 
 script:
+  - echo "Running Test"
   - python setup.py install
   - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-  - ./bootstrap_apollo.sh
+  - ./load_data.sh
   - python setup.py nosetests
+  - echo "Finishing Test"
 
 stages:
   - lint
