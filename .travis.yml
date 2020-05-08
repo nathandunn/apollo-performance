@@ -29,9 +29,9 @@ jobs:
       script:
         - echo "Loading data"
         - python setup.py install
+        - pip install -U pip arrow apollo
         - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
         - ./load_data.sh
-#        - nosetests
         - echo "Finished Loading Data"
 
 

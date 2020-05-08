@@ -88,8 +88,8 @@ function add_organisms(){
 
 
 time add_users
-time prepare_organism_data
-time add_organisms
+#time prepare_organism_data
+#time add_organisms
 #time load_gff3s
 
 
