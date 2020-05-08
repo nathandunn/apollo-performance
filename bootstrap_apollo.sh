@@ -47,6 +47,7 @@ fi
 echo "[BOOTSTRAP] Apollo is up, bootstrapping for tests"
 
 # Create some groups
+
 arrow groups create_group one_group
 arrow groups create_group another_group
 

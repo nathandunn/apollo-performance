@@ -18,7 +18,7 @@ jobs:
         - echo "Running Test"
         - python setup.py install
         - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-        - ./bootstra_apollo.sh
+        - ./bootstrap_apollo.sh
         - nosetests
         - echo "Finishing Test"
     - stage: load
