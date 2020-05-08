@@ -20,27 +20,30 @@ do
 done
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
-  docker run --memory=4g -d -p 8888:8080  quay.io/gmod/apollo:latest
-#    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
-#docker run -p 8888:8080 gmod/apollo:latest
-#docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
+  IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
+  if [[ "$IS_RUNNING" -ne "0" ]]; then
+    echo "is not running so starting"
+    docker run --memory=4g -d -p 8888:8080  quay.io/gmod/apollo:latest
+  else
+    echo "Apollo on docker is already running"
+  fi
 fi
 
 for ((i=0;i<30;i++))
 do
 	  echo "Checking Apollo"
    APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
+   echo "Result of Apollo up $APOLLO_UP"
 	if [[ $APOLLO_UP -eq 0 ]]; then
 	  echo "Apollo came up"
 		break
 	fi
+   arrow users get_users
     echo "Not up yet"
     sleep 10
 done
 
 echo "Apollo is running ${APOLLO_UP}"
-
-python setup.py nosetests
 
 function add_users(){
   echo "adding users using arrow"
@@ -60,7 +63,6 @@ function add_users(){
 
 time add_users
 
-killall java || true
 
 
 
