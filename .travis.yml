@@ -6,11 +6,11 @@ python:
 
 jobs:
   include:
-    - stage: lint
-      install:
-        - pip install -U pip flake8
-      script:
-        - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
+#    - stage: lint
+#      install:
+#        - pip install -U pip flake8
+#      script:
+#        - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
     - stage: test
       install:
         - pip install -U pip setuptools nose arrow
@@ -18,7 +18,7 @@ jobs:
         - echo "Running Test"
         - python setup.py install
         - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-        - pip install -U pip arrow
+        - pip install -U pip arrow apollo
         - ./bootstrap_apollo.sh
         - nosetests
         - echo "Finishing Test"
@@ -46,6 +46,6 @@ jobs:
 #  - echo "Finishing Test"
 
 stages:
-  - lint
+#  - lint  # currently there is no code to lint
   - test
   - load
