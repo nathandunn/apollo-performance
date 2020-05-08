@@ -11,18 +11,28 @@ jobs:
         - pip install -U pip flake8
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
+    - stage: test
+      install:
+        - pip install -U pip setuptools nose
+      script:
+        - echo "Running Test"
+        - python setup.py install
+        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+        - ./load_data.sh
+        - nosetests
+        - echo "Finishing Test"
 
 
-install:
-  - pip install -U pip setuptools nose
+#install:
+#  - pip install -U pip setuptools nose
 
-script:
-  - echo "Running Test"
-  - python setup.py install
-  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-  - ./load_data.sh
-  - nosetests
-  - echo "Finishing Test"
+#script:
+#  - echo "Running Test"
+#  - python setup.py install
+#  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+#  - ./load_data.sh
+#  - nosetests
+#  - echo "Finishing Test"
 
 stages:
   - lint
