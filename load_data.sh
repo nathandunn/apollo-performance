@@ -2,7 +2,8 @@
 
 
 NUMBER_USERS=200
-NUMBER_ORGS=20
+NUMBER_ORGANISMS_PER_ORGANISM=20
+ORGANISMS=("bee")
 
 
 SHOULD_LAUNCH_DOCKER=1
@@ -63,33 +64,33 @@ function add_users(){
   fi
 }
 
-ORGANISMS=("bee")
 
 function prepare_organism_data(){
-  for organism in ${ORGANISMS[@]} ; do
+  for organism in "${ORGANISMS[@]}" ; do
     cp -r load-data/${organism}/data/ "${GALAXY_SHARED_DIR}/${organism}"
   done
 }
 
 function add_organisms(){
-  for organism in ${ORGANISMS[@]} ; do
-    for org_count in $(seq 1 $NUMBER_ORGANISMS);
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
     do
-      arrow organisms add_organism --genus Foo4 --species barus "${organism}${org_count}" "$GALAXY_SHARED_DIR/${organism}"
+      arrow organisms add_organism --genus "Foo${org_count}" --species "barus${organism}" "${organism}${org_count}" "$GALAXY_SHARED_DIR/${organism}"
     done
   done
 }
 
-function load_gff3s(){
-
-}
+#function load_gff3s(){
+#
+#}
 
 
 
 time add_users
 time prepare_organism_data
 time add_organisms
-time load_gff3s
+#time load_gff3s
 
 
 
