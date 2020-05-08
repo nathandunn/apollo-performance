@@ -21,7 +21,7 @@ if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
   IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
   if [[ "$IS_RUNNING" -eq "0" ]]; then
     echo "is not running so starting"
-    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
+    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
   else
     echo "Apollo on docker is already running"
   fi
