@@ -22,6 +22,7 @@ done
 
 export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
+mkdir -p load-data
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
   IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
@@ -53,7 +54,6 @@ function add_users(){
   echo "adding users using arrow"
 #  echo arrow users get_users | jq '. | length'
   FOUND_USERS=$(arrow users get_users | jq '. | length')
-  rm -f users.txst
   echo "Number of users : ${FOUND_USERS}"
   if [ "$FOUND_USERS" -le "$NUMBER_USERS" ]
   then
@@ -79,18 +79,24 @@ function prepare_organism_data(){
     if [[ ! -f "${GALAXY_SHARED_DIR}/${organism}" ]]
     then
       cp -r load-data/${organism} "${GALAXY_SHARED_DIR}/${organism}"
+      touch "${GALAXY_SHARED_DIR}/${organism}/refSeqs.json"
     fi
   done
 }
 
 function add_organisms(){
-  for organism in "${ORGANISMS[@]}" ;
-  do
-    for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
+  FOUND_ORGANISMS=$(arrow organisms get_organisms | jq '. | length')
+  echo "Number of organisms : ${FOUND_ORGANISMS}"
+  if [ "$FOUND_ORGANISMS" -le "$NUMBER_ORGANISMS_PER_ORGANISM" ];
+  then
+    for organism in "${ORGANISMS[@]}" ;
     do
-      arrow organisms add_organism --genus "Foo${org_count}" --species "barus${organism}" "${organism}${org_count}" "$GALAXY_SHARED_DIR/${organism}"
+      for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
+      do
+        arrow organisms add_organism --genus "Foo${org_count}" --species "barus${organism}" "${organism}${org_count}" "/data/${organism}"
+      done
     done
-  done
+  fi
 }
 
 #function load_gff3s(){
@@ -102,7 +108,7 @@ function add_organisms(){
 time add_users
 time download_organism_data
 time prepare_organism_data
-#time add_organisms
+time add_organisms
 #time load_gff3s
 
 

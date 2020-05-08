@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .idea
+apollo_shared_dir
+load-data
