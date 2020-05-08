@@ -1,13 +1,8 @@
 language: python
 os: linux
 
-# sudo false implies containerized builds
-#sudo: false
-
 python:
-  - 3.5
-  - 3.8
-
+  - '3.6'
 
 jobs:
   include:
@@ -17,26 +12,6 @@ jobs:
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
-#env:
-#  global:
-#    # List package dependencies for conda
-#    - CONDA_DEPS="pytest numpy"
-#    # package name for test invocation
-#    - PACKAGENAME="mypackage"
-
-#before_install:
-## Here we download miniconda and install the dependencies
-#- export MINICONDA=$HOME/miniconda
-#- export PATH="$MINICONDA/bin:$PATH"
-#- hash -r
-#- wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-#- bash miniconda.sh -b -f -p $MINICONDA
-#- conda config --set always_yes yes
-#- conda update conda
-#- conda info -a
-#- conda create -n testenv python=$TRAVIS_PYTHON_VERSION
-#- source activate testenv
-#- conda install $CONDA_DEPS
 
 install:
   - pip install -U pip setuptools nose
@@ -46,16 +21,7 @@ script:
   - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
   - ./bootstrap_apollo.sh
   - python setup.py nosetests
-#  - sed  i 's|8888|8080/apollo|' `pwd`/test-data/arrow.yml
-#  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test data/arrow.yml
-#  - virtualenv .venv
-#  - . .venv/bin/activate
-#  - pip install apollo nose
-#  - ./bootstrap_apollo.sh  -nodocker
-#  - python setup.py nosetests
-#  - killall java || true
 
 stages:
   - lint
   - test
-  - deploy
