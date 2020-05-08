@@ -21,7 +21,7 @@ script:
   - python setup.py install
   - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
   - ./load_data.sh
-  - python setup.py nosetests
+  - nosetests
   - echo "Finishing Test"
 
 stages:
