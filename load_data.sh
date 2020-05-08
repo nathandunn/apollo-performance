@@ -27,7 +27,7 @@ if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
   IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
   if [[ "$IS_RUNNING" -eq "0" ]]; then
     echo "is not running so starting"
-    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
+    docker run --memory=4g -d -p 8888:8080 -v apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
   else
     echo "Apollo on docker is already running"
   fi
@@ -64,10 +64,22 @@ function add_users(){
   fi
 }
 
+function download_organism_data(){
+  for organism in "${ORGANISMS[@]}" ; do
+    if [[ ! -d "load-data/${organism}" ]]
+    then
+      curl -o load-data/${organism}.tgz https://apollo-jbrowse-data.s3.amazonaws.com/${organism}.tgz
+      tar xfz load-data/${organism}.tgz -C load-data
+    fi
+  done
+}
 
 function prepare_organism_data(){
   for organism in "${ORGANISMS[@]}" ; do
-    cp -r load-data/${organism}/data/ "${GALAXY_SHARED_DIR}/${organism}"
+    if [[ ! -f "${GALAXY_SHARED_DIR}/${organism}" ]]
+    then
+      cp -r load-data/${organism} "${GALAXY_SHARED_DIR}/${organism}"
+    fi
   done
 }
 
@@ -88,7 +100,8 @@ function add_organisms(){
 
 
 time add_users
-#time prepare_organism_data
+time download_organism_data
+time prepare_organism_data
 #time add_organisms
 #time load_gff3s
 
