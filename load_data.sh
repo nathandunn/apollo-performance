@@ -42,7 +42,7 @@ echo "Apollo is running ${APOLLO_UP}"
 
 python setup.py nosetests
 
-function addusers(){
+function add_users(){
   echo "adding users using arrow"
 #  echo arrow users get_users | jq '. | length'
   FOUND_USERS=$(arrow users get_users | jq '. | length')
@@ -52,13 +52,13 @@ function addusers(){
   then
     for user_number in $(1..$NUMBER_USERS);
     do
-      arrow users create_user user${user_number}@test.com user${user_number} lastname${user_number} demo --role user
+      arrow users create_user user"${user_number}"@test.com user"${user_number}" lastname"${user_number}" demo --role user
     done
   fi
 
 }
 
-time addusers
+time add_users
 
 killall java || true
 
