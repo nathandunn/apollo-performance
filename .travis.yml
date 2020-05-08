@@ -16,9 +16,10 @@ jobs:
         - pip install -U pip setuptools nose arrow
       script:
         - echo "Running Test"
+        - pip install -U pip arrow apollo
+        - arrow
         - python setup.py install
         - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-        - pip install -U pip arrow apollo
         - ./bootstrap_apollo.sh
         - nosetests
         - echo "Finishing Test"
