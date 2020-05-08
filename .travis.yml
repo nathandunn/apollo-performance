@@ -13,7 +13,7 @@ jobs:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
     - stage: test
       install:
-        - pip install -U pip setuptools nose arrow
+        - pip install -g -U pip setuptools nose arrow
       script:
         - echo "Running Test"
         - python setup.py install

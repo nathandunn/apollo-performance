@@ -2,7 +2,7 @@
 
 
 NUMBER_USERS=200
-NUMBER_ORGS=200
+NUMBER_ORGS=20
 
 
 SHOULD_LAUNCH_DOCKER=1
@@ -61,10 +61,35 @@ function add_users(){
       arrow users create_user user"${user_number}"@test.com user"${user_number}" lastname"${user_number}" demo --role user
     done
   fi
+}
+
+ORGANISMS=("bee")
+
+function prepare_organism_data(){
+  for organism in ${ORGANISMS[@]} ; do
+    cp -r load-data/${organism}/data/ "${GALAXY_SHARED_DIR}/${organism}"
+  done
+}
+
+function add_organisms(){
+  for organism in ${ORGANISMS[@]} ; do
+    for org_count in $(seq 1 $NUMBER_ORGANISMS);
+    do
+      arrow organisms add_organism --genus Foo4 --species barus "${organism}${org_count}" "$GALAXY_SHARED_DIR/${organism}"
+    done
+  done
+}
+
+function load_gff3s(){
 
 }
 
+
+
 time add_users
+time prepare_organism_data
+time add_organisms
+time load_gff3s
 
 
 
