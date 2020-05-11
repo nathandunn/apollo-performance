@@ -93,23 +93,33 @@ function add_organisms(){
     do
       for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
       do
-        arrow organisms add_organism --genus "Foo${org_count}" --species "barus${organism}" "${organism}${org_count}" "/data/${organism}"
+        arrow organisms add_organism --genus "Foous${org_count}" --species "barus${organism}" "${organism}${org_count}" "/data/${organism}"
       done
     done
   fi
 }
 
-#function load_gff3s(){
-#
-#}
+
+AGR_ORGANISMS=("RGD" "HUMAN" "WB" "MGI" "ZFIN" "MGI" "FB")
+# data URL is here: curl https://fms.alliancegenome.org/api/datafile/by/GFF/ |  jq '.[] | .s3Path' | grep 3.0.0
+# data URL is here: curl https://fms.alliancegenome.org/api/datafile/by/VCF/ |  jq '.[] | .s3Path' | grep 3.0.0 # though we don't use that
+
+function get_agr_gff3() {
+  for organism in "${AGR_ORGANISMS[@]}" ; do
+    echo "curl -o ${organism}.gff http://download.alliancegenome.org/3.0.0/GFF/${organism}/GFF_${organism}_0.gff"
+    curl -o ${organism}.gff http://download.alliancegenome.org/3.0.0/GFF/${organism}/GFF_${organism}_0.gff
+  done
+
+}
 
 
 
-time add_users
-time download_organism_data
-time prepare_organism_data
-time add_organisms
+#time add_users
+#time download_organism_data
+#time prepare_organism_data
+#time add_organisms
 #time load_gff3s
+time get_agr_gff3
 
 
 
