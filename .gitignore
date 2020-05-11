@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 .idea
 apollo_shared_dir
-load-data
+loaded-data

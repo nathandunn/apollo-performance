@@ -22,7 +22,7 @@ done
 
 export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
-mkdir -p load-data
+mkdir -p loaded-data
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
   IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
@@ -66,10 +66,10 @@ function add_users(){
 
 function download_organism_data(){
   for organism in "${ORGANISMS[@]}" ; do
-    if [[ ! -d "load-data/${organism}" ]]
+    if [[ ! -d "loaded-data/${organism}" ]]
     then
-      curl -o load-data/${organism}.tgz https://apollo-jbrowse-data.s3.amazonaws.com/${organism}.tgz
-      tar xfz load-data/${organism}.tgz -C load-data
+      curl -o loaded-data/${organism}.tgz https://apollo-jbrowse-data.s3.amazonaws.com/${organism}.tgz
+      tar xfz loaded-data/${organism}.tgz -C loaded-data
     fi
   done
 }
@@ -78,7 +78,7 @@ function prepare_organism_data(){
   for organism in "${ORGANISMS[@]}" ; do
     if [[ ! -f "${GALAXY_SHARED_DIR}/${organism}" ]]
     then
-      cp -r load-data/${organism} "${GALAXY_SHARED_DIR}/${organism}"
+      cp -r loaded-data/${organism} "${GALAXY_SHARED_DIR}/${organism}"
       touch "${GALAXY_SHARED_DIR}/${organism}/refSeqs.json"
     fi
   done
@@ -100,26 +100,36 @@ function add_organisms(){
 }
 
 
-AGR_ORGANISMS=("RGD" "HUMAN" "WB" "MGI" "ZFIN" "MGI" "FB")
-# data URL is here: curl https://fms.alliancegenome.org/api/datafile/by/GFF/ |  jq '.[] | .s3Path' | grep 3.0.0
-# data URL is here: curl https://fms.alliancegenome.org/api/datafile/by/VCF/ |  jq '.[] | .s3Path' | grep 3.0.0 # though we don't use that
 
-function get_agr_gff3() {
-  for organism in "${AGR_ORGANISMS[@]}" ; do
-    echo "curl -o ${organism}.gff http://download.alliancegenome.org/3.0.0/GFF/${organism}/GFF_${organism}_0.gff"
-    curl -o ${organism}.gff http://download.alliancegenome.org/3.0.0/GFF/${organism}/GFF_${organism}_0.gff
-  done
+function load_gff3s() {
+  FOUND_ORGANISMS=$(arrow organisms get_organisms | jq '.[].directory' | uniq | wc -l)
+  echo "Found organisms : ${FOUND_ORGANISMS} vs ${#ORGANISMS[@]}"
+  COMMON_NAMES_STRING=$(arrow organisms get_organisms | jq '.[].commonName'  )
+  COMMON_NAMES=()
+  while IFS= read -r line
+  do
+    echo "adding $line"
+    COMMON_NAMES+=($line)
+  done < <(arrow organisms get_organisms | jq '.[].commonName')
+  echo "Populated genomes [  ${COMMON_NAMES[@]} ] "
+  if [ "$FOUND_ORGANISMS" -eq ${#ORGANISMS[@]} ];
+  then
+    echo "Adding genomes for names"
+    for organism in "${COMMON_NAMES[@]}" ;
+    do
+        echo "arrow annotations load_gff3s  '${organism}' 'loaded-data/${organism}/${organism}.gff'"
+    done
+  fi
 
 }
-
 
 
 #time add_users
 #time download_organism_data
 #time prepare_organism_data
 #time add_organisms
-#time load_gff3s
-time get_agr_gff3
+time load_gff3s
+#time get_agr_gff3
 
 
 
