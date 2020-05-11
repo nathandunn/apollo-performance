@@ -3,7 +3,7 @@
 
 NUMBER_USERS=200
 NUMBER_ORGANISMS_PER_ORGANISM=20
-ORGANISMS=("yeast")
+ORGANISMS=("yeast" "fly")
 
 
 SHOULD_LAUNCH_DOCKER=1
@@ -102,34 +102,37 @@ function add_organisms(){
 
 
 function load_gff3s() {
-  FOUND_ORGANISMS=$(arrow organisms get_organisms | jq '.[].directory' | uniq | wc -l)
-  echo "Found organisms : ${FOUND_ORGANISMS} vs ${#ORGANISMS[@]}"
+  FOUND_ORGANISMS_COUNT=$(arrow organisms get_organisms | jq '.[].directory' | uniq | wc -l )
+  echo "Found organisms : ${FOUND_ORGANISMS} vs ${#ORGANISMS[@]} ${FOUND_ORGANISMS_COUNT}"
   COMMON_NAMES_STRING=$(arrow organisms get_organisms | jq '.[].commonName'  )
-  COMMON_NAMES=()
-  while IFS= read -r line
+
+  for organism in "${ORGANISMS[@]}" ;
   do
-    echo "adding $line"
-    COMMON_NAMES+=($line)
-  done < <(arrow organisms get_organisms | jq '.[].commonName')
-  echo "Populated genomes [  ${COMMON_NAMES[@]} ] "
-  if [ "$FOUND_ORGANISMS" -eq ${#ORGANISMS[@]} ];
-  then
-    echo "Adding genomes for names"
-    for organism in "${COMMON_NAMES[@]}" ;
+    COMMON_NAMES=()
+    while IFS= read -r line
     do
-        echo "arrow annotations load_gff3s  '${organism}' 'loaded-data/${organism}/${organism}.gff'"
+      echo "adding $line"
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    echo "Populated genomes [  ${COMMON_NAMES[@]} ] "
+#    if [ "$FOUND_ORGANISMS" -eq ${#ORGANISMS[@]} ];
+#    then
+    echo "Adding genomes for ${organism}"
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+        echo "time arrow annotations load_gff3  ${common_name} 'loaded-data/${organism}/raw/${organism}.gff'"
     done
-  fi
+#    fi
+  done
 
 }
 
 
-#time add_users
-#time download_organism_data
-#time prepare_organism_data
-#time add_organisms
-time load_gff3s
-#time get_agr_gff3
+time add_users
+time download_organism_data
+time prepare_organism_data
+time add_organisms
+#time load_gff3s
 
 
 
