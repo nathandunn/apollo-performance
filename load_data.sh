@@ -6,7 +6,6 @@ NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
 ORGANISMS=("yeast" "fly")
 
-function init(){
 SHOULD_LAUNCH_DOCKER=1
 for arg in "$@"
 do
@@ -25,32 +24,34 @@ export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 mkdir -p loaded-data
 
-if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
-  IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
-  if [[ "$IS_RUNNING" -eq "0" ]]; then
-    echo "is not running so starting"
-    echo "docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/ quay.io/gmod/apollo:latest"
-    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/  quay.io/gmod/apollo:latest
-  else
-    echo "Apollo on docker is already running"
+function init(){
+
+  if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
+    IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
+    if [[ "$IS_RUNNING" -eq "0" ]]; then
+      echo "is not running so starting"
+      echo "docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/ quay.io/gmod/apollo:latest"
+      docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/  quay.io/gmod/apollo:latest
+    else
+      echo "Apollo on docker is already running"
+    fi
   fi
-fi
 
-for ((i=0;i<30;i++))
-do
-	  echo "Checking Apollo"
-   APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
-   echo "Result of Apollo up $APOLLO_UP"
-	if [[ $APOLLO_UP -eq 0 ]]; then
-	  echo "Apollo came up"
-		break
-	fi
-#   arrow users get_users
-    echo "Not up yet"
-    sleep 10
-done
+  for ((i=0;i<30;i++))
+  do
+      echo "Checking Apollo"
+     APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
+     echo "Result of Apollo up $APOLLO_UP"
+    if [[ $APOLLO_UP -eq 0 ]]; then
+      echo "Apollo came up"
+      break
+    fi
+  #   arrow users get_users
+      echo "Not up yet"
+      sleep 10
+  done
 
-echo "Apollo is running ${APOLLO_UP}"
+  echo "Apollo is running ${APOLLO_UP}"
 
 }
 
