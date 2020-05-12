@@ -4,7 +4,7 @@
 
 NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
-ORGANISMS=("yeast" "fly")
+ORGANISMS=("yeast" "fly" "fish" "worm")
 
 SHOULD_LAUNCH_DOCKER=1
 for arg in "$@"
