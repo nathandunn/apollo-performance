@@ -1,11 +1,12 @@
 #!/bin/bash
 
+#pip install ../python-apollo
 
-NUMBER_USERS=200
-NUMBER_ORGANISMS_PER_ORGANISM=20
+NUMBER_USERS=2
+NUMBER_ORGANISMS_PER_ORGANISM=1
 ORGANISMS=("yeast" "fly")
 
-
+function init(){
 SHOULD_LAUNCH_DOCKER=1
 for arg in "$@"
 do
@@ -28,7 +29,8 @@ if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
   IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
   if [[ "$IS_RUNNING" -eq "0" ]]; then
     echo "is not running so starting"
-    docker run --memory=4g -d -p 8888:8080 -v apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
+    echo "docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/ quay.io/gmod/apollo:latest"
+    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/  quay.io/gmod/apollo:latest
   else
     echo "Apollo on docker is already running"
   fi
@@ -49,6 +51,8 @@ do
 done
 
 echo "Apollo is running ${APOLLO_UP}"
+
+}
 
 function add_users(){
   echo "adding users using arrow"
@@ -120,7 +124,7 @@ function load_gff3s() {
     echo "Adding genomes for ${organism}"
     for common_name in "${COMMON_NAMES[@]}" ;
     do
-        echo "time arrow annotations load_gff3  ${common_name} 'loaded-data/${organism}/raw/${organism}.gff'"
+        time arrow annotations load_bulk_gff3  ${common_name} "loaded-data/${organism}/raw/${organism}.gff"
     done
 #    fi
   done
@@ -128,11 +132,12 @@ function load_gff3s() {
 }
 
 
+time init
 time add_users
 time download_organism_data
 time prepare_organism_data
 time add_organisms
-#time load_gff3s
+time load_gff3s
 
 
 
