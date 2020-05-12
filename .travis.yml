@@ -49,4 +49,4 @@ jobs:
 stages:
 #  - lint  # currently there is no code to lint
   - test
-  - load
+#  - load
