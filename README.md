@@ -6,7 +6,8 @@ To run this code:
 ```
 python3 -m venv venv
 source venv/bin/activate
-pip3 install -U pip -r requirements.txt
+pip install -U pip -r requirements.txt
+# if you need to install the more recent one: pip install ../python-apollo
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 export ARROW_GLOBAL_CONFIG_PATH
 ```

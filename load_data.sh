@@ -4,7 +4,16 @@
 
 NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
-ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
+#ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
+#ORGANISMS=("yeast") # broken types
+#ORGANISMS=("worm") # works, but will need ot re-adjust he types
+#ORGANISMS=("fly") # works , very slow
+#ORGANISMS=("fish")
+#ORGANISMS=("human")
+
+#alias kill_docker_process="docker ps | tail -1 | cut -c1-15  | xargs docker kill "
+#alias login_docker_process="docker exec -it `docker ps | tail -1 | cut -c1-15` /bin/bash  "
+
 
 SHOULD_LAUNCH_DOCKER=1
 for arg in "$@"
@@ -20,7 +29,9 @@ do
     esac
 done
 
-export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
+ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
+export ARROW_GLOBAL_CONFIG_PATH GALAXY_SHARED_DIR
 mkdir -p "$GALAXY_SHARED_DIR"
 mkdir -p loaded-data
 
@@ -110,15 +121,18 @@ function load_gff3s() {
   FOUND_ORGANISMS_COUNT=$(arrow organisms get_organisms | jq '.[].directory' | uniq | wc -l )
   echo "Found organisms : ${FOUND_ORGANISMS} vs ${#ORGANISMS[@]} ${FOUND_ORGANISMS_COUNT}"
   COMMON_NAMES_STRING=$(arrow organisms get_organisms | jq '.[].commonName'  )
+  echo "Common names string ${COMMON_NAMES_STRING}"
 
   for organism in "${ORGANISMS[@]}" ;
   do
+    echo "Add gff3 for ${organism}"
     COMMON_NAMES=()
     while IFS= read -r line
     do
       echo "adding $line"
       COMMON_NAMES+=($line)
     done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    echo "Common names ${COMMON_NAMES}"
     echo "Populated genomes [  ${COMMON_NAMES[@]} ] "
 #    if [ "$FOUND_ORGANISMS" -eq ${#ORGANISMS[@]} ];
 #    then
@@ -132,6 +146,9 @@ function load_gff3s() {
 
 }
 
+function kill_docker_process(){
+ docker ps | tail -1 | cut -c1-15  | xargs docker kill
+}
 
 time init
 time add_users
@@ -139,6 +156,7 @@ time download_organism_data
 time prepare_organism_data
 time add_organisms
 time load_gff3s
+#time finish_process
 
 
 
