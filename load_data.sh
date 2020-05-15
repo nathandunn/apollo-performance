@@ -140,7 +140,7 @@ function load_gff3s() {
     echo "Adding genomes for ${organism}"
     for common_name in "${COMMON_NAMES[@]}" ;
     do
-        time arrow annotations load_gff3  ${common_name} --timing --batch_size=${BATCH_SIZE} "loaded-data/${organism}/raw/${organism}.gff"
+        time arrow annotations load_gff3  $(eval echo $common_name) --timing --batch_size=${BATCH_SIZE} "loaded-data/${organism}/raw/${organism}.gff"
     done
 #    fi
   done
