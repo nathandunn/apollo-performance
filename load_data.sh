@@ -4,8 +4,9 @@
 
 NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
+BATCH_SIZE=5
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-#ORGANISMS=("yeast") # broken types
+ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
 #ORGANISMS=("fly") # works , very slow
 #ORGANISMS=("fish")
@@ -139,7 +140,7 @@ function load_gff3s() {
     echo "Adding genomes for ${organism}"
     for common_name in "${COMMON_NAMES[@]}" ;
     do
-        time arrow annotations load_gff3  ${common_name} "loaded-data/${organism}/raw/${organism}.gff"
+        time arrow annotations load_gff3  ${common_name} --timing --batch_size=${BATCH_SIZE} "loaded-data/${organism}/raw/${organism}.gff"
     done
 #    fi
   done
