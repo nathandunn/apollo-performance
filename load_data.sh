@@ -4,13 +4,17 @@
 
 NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
-BATCH_SIZE=1
+BATCH_SIZE=10
+#APOLLO_DATA_DIRECTORY="/data/"
+APOLLO_DATA_DIRECTORY="/Users/nathandunn/repositories/apollo-performance/loaded-data/"
+
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-#ORGANISMS=("yeast") # broken types
+ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
-ORGANISMS=("fly") # works , very slow
+#ORGANISMS=("fly") # works , very slow
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
+
 
 #alias kill_docker_process="docker ps | tail -1 | cut -c1-15  | xargs docker kill "
 #alias login_docker_process="docker exec -it `docker ps | tail -1 | cut -c1-15` /bin/bash  "
@@ -42,8 +46,8 @@ function init(){
     IS_RUNNING=$(docker ps  | grep quay.io/gmod/apollo:latest | wc -l)
     if [[ "$IS_RUNNING" -eq "0" ]]; then
       echo "is not running so starting"
-      echo "docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/ quay.io/gmod/apollo:latest"
-      docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:/data/  quay.io/gmod/apollo:latest
+      echo "docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:$APOLLO_DATA_DIRECTORY quay.io/gmod/apollo:latest"
+      docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir:$APOLLO_DATA_DIRECTORY  quay.io/gmod/apollo:latest
     else
       echo "Apollo on docker is already running"
     fi
@@ -110,7 +114,7 @@ function add_organisms(){
     do
       for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
       do
-        arrow organisms add_organism --genus "Foous${org_count}" --species "barus${organism}" "${organism}${org_count}" "/data/${organism}"
+        arrow organisms add_organism --genus "Foous${org_count}" --species "barus${organism}" "${organism}${org_count}" "$APOLLO_DATA_DIRECTORY${organism}"
       done
     done
   fi
