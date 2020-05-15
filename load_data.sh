@@ -6,6 +6,7 @@ NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
 BATCH_SIZE=5
 APOLLO_DATA_DIRECTORY="/data/"
+ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
 #ORGANISMS=("yeast") # broken types
@@ -26,6 +27,7 @@ do
         --nodocker)
         SHOULD_LAUNCH_DOCKER=0
         APOLLO_DATA_DIRECTORY="/Users/nathandunn/repositories/apollo-performance/loaded-data/"
+        ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-arrow.yml
         shift
         ;;
         *)
@@ -34,7 +36,6 @@ do
     esac
 done
 
-ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 export ARROW_GLOBAL_CONFIG_PATH GALAXY_SHARED_DIR
 mkdir -p "$GALAXY_SHARED_DIR"
