@@ -4,11 +4,11 @@
 
 NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
-BATCH_SIZE=5
+BATCH_SIZE=1
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-ORGANISMS=("yeast") # broken types
+#ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
-#ORGANISMS=("fly") # works , very slow
+ORGANISMS=("fly") # works , very slow
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
 
