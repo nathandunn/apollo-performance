@@ -2,8 +2,8 @@
 
 #pip install ../python-apollo
 
-NUMBER_USERS=2
-NUMBER_ORGANISMS_PER_ORGANISM=1
+NUMBER_USERS=100
+NUMBER_ORGANISMS_PER_ORGANISM=10
 BATCH_SIZE=5
 APOLLO_DATA_DIRECTORY="/data/"
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
@@ -184,7 +184,6 @@ function delete_features_from_organism() {
 }
 
 function perform_tests(){
-  time load_gff3s
   time get_sequences
   time change_organisms
   time add_features
@@ -203,6 +202,7 @@ time add_users
 time download_organism_data
 time prepare_organism_data
 time add_organisms
+time load_gff3s
 time perform_tests
 #time finish_process
 
