@@ -130,3 +130,4 @@ dmypy.json
 .idea
 apollo_shared_dir
 loaded-data
+*.swp

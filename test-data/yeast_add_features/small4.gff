@@ -1,0 +1,9 @@
+I	sgd	gene	132199	134076	.	+	.	ID=gene:YAL011W;Name=SWC3;biotype=protein_coding;description=Protein of unknown function%3B component of the SWR1 complex%2C which exchanges histone variant H2AZ (Htz1p) for chromatin-bound histone H2A%3B required for formation of nuclear-associated array of smooth endoplasmic reticulum known as karmellae [Source:SGD%3BAcc:S000000009];gene_id=YAL011W;logic_name=sgd
+I	sgd	mRNA	132199	134076	.	+	.	ID=transcript:YAL011W_mRNA;Parent=gene:YAL011W;Name=SWC3;biotype=protein_coding;transcript_id=YAL011W_mRNA
+I	sgd	exon	132199	134076	.	+	.	Parent=transcript:YAL011W_mRNA;Name=YAL011W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL011W_mRNA-E1;rank=1
+I	sgd	CDS	132199	134076	.	+	0	ID=CDS:YAL011W;Parent=transcript:YAL011W_mRNA;protein_id=YAL011W
+###
+I	sgd	gene	134184	135665	.	-	.	ID=gene:YAL010C;Name=MDM10;biotype=protein_coding;description=Subunit of both the ERMES and the SAM complex%3B component of ERMES complex which acts as a molecular tether between the mitochondria and the ER%2C necessary for efficient phospholipid exchange between organelles and for mitophagy%3B SAM/TOB complex component that functions in the assembly of outer membrane beta-barrel proteins%3B involved in mitochondrial inheritance and morphology%3B ERMES complex is often co-localized with peroxisomes and concentrated areas of pyruvate dehydrogenase [Source:SGD%3BAcc:S000000008];gene_id=YAL010C;logic_name=sgd
+I	sgd	mRNA	134184	135665	.	-	.	ID=transcript:YAL010C_mRNA;Parent=gene:YAL010C;Name=MDM10;biotype=protein_coding;transcript_id=YAL010C_mRNA
+I	sgd	exon	134184	135665	.	-	.	Parent=transcript:YAL010C_mRNA;Name=YAL010C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL010C_mRNA-E1;rank=1
+I	sgd	CDS	134184	135665	.	-	0	ID=CDS:YAL010C;Parent=transcript:YAL010C_mRNA;protein_id=YAL010C

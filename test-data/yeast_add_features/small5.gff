@@ -1,0 +1,9 @@
+I	sgd	gene	176856	177023	.	-	.	ID=gene:YAR020C;Name=PAU7;biotype=protein_coding;description=Member of the seripauperin multigene family%3B active during alcoholic fermentation%2C regulated by anaerobiosis%2C inhibited by oxygen%2C repressed by heme [Source:SGD%3BAcc:S000000073];gene_id=YAR020C;logic_name=sgd
+I	sgd	mRNA	176856	177023	.	-	.	ID=transcript:YAR020C_mRNA;Parent=gene:YAR020C;Name=PAU7;biotype=protein_coding;transcript_id=YAR020C_mRNA
+I	sgd	exon	176856	177023	.	-	.	Parent=transcript:YAR020C_mRNA;Name=YAR020C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR020C_mRNA-E1;rank=1
+I	sgd	CDS	176856	177023	.	-	0	ID=CDS:YAR020C;Parent=transcript:YAR020C_mRNA;protein_id=YAR020C
+###
+I	sgd	gene	179281	179820	.	-	.	ID=gene:YAR023C;biotype=protein_coding;description=Putative integral membrane protein%3B member of DUP240 gene family [Source:SGD%3BAcc:S000000074];gene_id=YAR023C;logic_name=sgd
+I	sgd	mRNA	179281	179820	.	-	.	ID=transcript:YAR023C_mRNA;Parent=gene:YAR023C;biotype=protein_coding;transcript_id=YAR023C_mRNA
+I	sgd	exon	179281	179820	.	-	.	Parent=transcript:YAR023C_mRNA;Name=YAR023C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR023C_mRNA-E1;rank=1
+I	sgd	CDS	179281	179820	.	-	0	ID=CDS:YAR023C;Parent=transcript:YAR023C_mRNA;protein_id=YAR023C

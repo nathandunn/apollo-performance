@@ -1,0 +1,9 @@
+II	sgd	gene	280	2658	.	-	.	ID=gene:YBL113C;biotype=protein_coding;description=Helicase-like protein encoded within the telomeric Y' element [Source:SGD%3BAcc:S000002153];gene_id=YBL113C;logic_name=sgd
+II	sgd	mRNA	280	2658	.	-	.	ID=transcript:YBL113C_mRNA;Parent=gene:YBL113C;biotype=protein_coding;transcript_id=YBL113C_mRNA
+II	sgd	exon	280	2658	.	-	.	Parent=transcript:YBL113C_mRNA;Name=YBL113C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL113C_mRNA-E1;rank=1
+II	sgd	CDS	280	2658	.	-	0	ID=CDS:YBL113C;Parent=transcript:YBL113C_mRNA;protein_id=YBL113C
+###
+II	sgd	gene	646	1128	.	+	.	ID=gene:YBL113W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching [Source:SGD%3BAcc:S000028599];gene_id=YBL113W-A;logic_name=sgd
+II	sgd	mRNA	646	1128	.	+	.	ID=transcript:YBL113W-A_mRNA;Parent=gene:YBL113W-A;biotype=protein_coding;transcript_id=YBL113W-A_mRNA
+II	sgd	exon	646	1128	.	+	.	Parent=transcript:YBL113W-A_mRNA;Name=YBL113W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL113W-A_mRNA-E1;rank=1
+II	sgd	CDS	646	1128	.	+	0	ID=CDS:YBL113W-A;Parent=transcript:YBL113W-A_mRNA;protein_id=YBL113W-A

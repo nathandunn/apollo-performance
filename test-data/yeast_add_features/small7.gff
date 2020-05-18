@@ -1,0 +1,9 @@
+II	sgd	gene	47363	48628	.	-	.	ID=gene:YBL091C;Name=MAP2;biotype=protein_coding;description=Methionine aminopeptidase%3B catalyzes the cotranslational removal of N-terminal methionine from nascent polypeptides%3B function is partially redundant with that of Map1p [Source:SGD%3BAcc:S000000187];gene_id=YBL091C;logic_name=sgd
+II	sgd	mRNA	47363	48628	.	-	.	ID=transcript:YBL091C_mRNA;Parent=gene:YBL091C;Name=MAP2;biotype=protein_coding;transcript_id=YBL091C_mRNA
+II	sgd	exon	47363	48628	.	-	.	Parent=transcript:YBL091C_mRNA;Name=YBL091C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL091C_mRNA-E1;rank=1
+II	sgd	CDS	47363	48628	.	-	0	ID=CDS:YBL091C;Parent=transcript:YBL091C_mRNA;protein_id=YBL091C
+###
+II	sgd	gene	48825	49358	.	+	.	ID=gene:YBL090W;Name=MRP21;biotype=protein_coding;description=Mitochondrial ribosomal protein of the small subunit%3B MRP21 exhibits genetic interactions with mutations in the COX2 and COX3 mRNA 5'-untranslated leader sequences [Source:SGD%3BAcc:S000000186];gene_id=YBL090W;logic_name=sgd
+II	sgd	mRNA	48825	49358	.	+	.	ID=transcript:YBL090W_mRNA;Parent=gene:YBL090W;Name=MRP21;biotype=protein_coding;transcript_id=YBL090W_mRNA
+II	sgd	exon	48825	49358	.	+	.	Parent=transcript:YBL090W_mRNA;Name=YBL090W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL090W_mRNA-E1;rank=1
+II	sgd	CDS	48825	49358	.	+	0	ID=CDS:YBL090W;Parent=transcript:YBL090W_mRNA;protein_id=YBL090W

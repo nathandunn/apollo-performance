@@ -1,0 +1,9 @@
+II	sgd	gene	135998	136366	.	+	.	ID=gene:YBL044W;biotype=protein_coding;description=Putative protein of unknown function%3B YBL044W is not an essential protein [Source:SGD%3BAcc:S000000140];gene_id=YBL044W;logic_name=sgd
+II	sgd	mRNA	135998	136366	.	+	.	ID=transcript:YBL044W_mRNA;Parent=gene:YBL044W;biotype=protein_coding;transcript_id=YBL044W_mRNA
+II	sgd	exon	135998	136366	.	+	.	Parent=transcript:YBL044W_mRNA;Name=YBL044W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL044W_mRNA-E1;rank=1
+II	sgd	CDS	135998	136366	.	+	0	ID=CDS:YBL044W;Parent=transcript:YBL044W_mRNA;protein_id=YBL044W
+###
+II	sgd	gene	136688	137461	.	+	.	ID=gene:YBL043W;Name=ECM13;biotype=protein_coding;description=Non-essential protein of unknown function%3B induced by treatment with 8-methoxypsoralen and UVA irradiation%3B ECM13 has a paralog%2C YJR115W%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000139];gene_id=YBL043W;logic_name=sgd
+II	sgd	mRNA	136688	137461	.	+	.	ID=transcript:YBL043W_mRNA;Parent=gene:YBL043W;Name=ECM13;biotype=protein_coding;transcript_id=YBL043W_mRNA
+II	sgd	exon	136688	137461	.	+	.	Parent=transcript:YBL043W_mRNA;Name=YBL043W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL043W_mRNA-E1;rank=1
+II	sgd	CDS	136688	137461	.	+	0	ID=CDS:YBL043W;Parent=transcript:YBL043W_mRNA;protein_id=YBL043W

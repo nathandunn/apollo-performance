@@ -1,0 +1,9 @@
+II	sgd	gene	92414	93394	.	+	.	ID=gene:YBL068W;Name=PRS4;biotype=protein_coding;description=5-phospho-ribosyl-1(alpha)-pyrophosphate synthetase%2C synthesizes PRPP%3B which is required for nucleotide%2C histidine%2C and tryptophan biosynthesis%3B one of five related enzymes%2C which are active as heteromultimeric complexes%3B PRS4 has a paralog%2C PRS2%2C that arose from the whole genome duplication%3B a missense mutation in the conserved residue R196 of its human homolog PRPS1 is pathogenic [Source:SGD%3BAcc:S000000164];gene_id=YBL068W;logic_name=sgd
+II	sgd	mRNA	92414	93394	.	+	.	ID=transcript:YBL068W_mRNA;Parent=gene:YBL068W;Name=PRS4;biotype=protein_coding;transcript_id=YBL068W_mRNA
+II	sgd	exon	92414	93394	.	+	.	Parent=transcript:YBL068W_mRNA;Name=YBL068W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL068W_mRNA-E1;rank=1
+II	sgd	CDS	92414	93394	.	+	0	ID=CDS:YBL068W;Parent=transcript:YBL068W_mRNA;protein_id=YBL068W
+###
+II	sgd	gene	93639	95882	.	-	.	ID=gene:YBL067C;Name=UBP13;biotype=protein_coding;description=Ubiquitin-specific protease that cleaves Ub-protein fusions%3B UBP13 has a paralog%2C UBP9%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000163];gene_id=YBL067C;logic_name=sgd
+II	sgd	mRNA	93639	95882	.	-	.	ID=transcript:YBL067C_mRNA;Parent=gene:YBL067C;Name=UBP13;biotype=protein_coding;transcript_id=YBL067C_mRNA
+II	sgd	exon	93639	95882	.	-	.	Parent=transcript:YBL067C_mRNA;Name=YBL067C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YBL067C_mRNA-E1;rank=1
+II	sgd	CDS	93639	95882	.	-	0	ID=CDS:YBL067C;Parent=transcript:YBL067C_mRNA;protein_id=YBL067C

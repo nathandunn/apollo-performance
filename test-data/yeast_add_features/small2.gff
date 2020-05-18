@@ -1,0 +1,14 @@
+I	sgd	gene	24000	27968	.	-	.	ID=gene:YAL063C;Name=FLO9;biotype=protein_coding;description=Lectin-like protein with similarity to Flo1p%3B thought to be expressed and involved in flocculation [Source:SGD%3BAcc:S000000059];gene_id=YAL063C;logic_name=sgd
+I	sgd	mRNA	24000	27968	.	-	.	ID=transcript:YAL063C_mRNA;Parent=gene:YAL063C;Name=FLO9;biotype=protein_coding;transcript_id=YAL063C_mRNA
+I	sgd	exon	24000	27968	.	-	.	Parent=transcript:YAL063C_mRNA;Name=YAL063C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL063C_mRNA-E1;rank=1
+I	sgd	CDS	24000	27968	.	-	0	ID=CDS:YAL063C;Parent=transcript:YAL063C_mRNA;protein_id=YAL063C
+###
+I	sgd	gene	31567	32940	.	+	.	ID=gene:YAL062W;Name=GDH3;biotype=protein_coding;description=NADP(+)-dependent glutamate dehydrogenase%3B synthesizes glutamate from ammonia and alpha-ketoglutarate%3B rate of alpha-ketoglutarate utilization differs from Gdh1p%3B expression regulated by nitrogen and carbon sources%3B GDH3 has a paralog%2C GDH1%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000058];gene_id=YAL062W;logic_name=sgd
+I	sgd	mRNA	31567	32940	.	+	.	ID=transcript:YAL062W_mRNA;Parent=gene:YAL062W;Name=GDH3;biotype=protein_coding;transcript_id=YAL062W_mRNA
+I	sgd	exon	31567	32940	.	+	.	Parent=transcript:YAL062W_mRNA;Name=YAL062W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL062W_mRNA-E1;rank=1
+I	sgd	CDS	31567	32940	.	+	0	ID=CDS:YAL062W;Parent=transcript:YAL062W_mRNA;protein_id=YAL062W
+###
+I	sgd	gene	33448	34701	.	+	.	ID=gene:YAL061W;Name=BDH2;biotype=protein_coding;description=Putative medium-chain alcohol dehydrogenase with similarity to BDH1%3B transcription induced by constitutively active PDR1 and PDR3 [Source:SGD%3BAcc:S000000057];gene_id=YAL061W;logic_name=sgd
+I	sgd	mRNA	33448	34701	.	+	.	ID=transcript:YAL061W_mRNA;Parent=gene:YAL061W;Name=BDH2;biotype=protein_coding;transcript_id=YAL061W_mRNA
+I	sgd	exon	33448	34701	.	+	.	Parent=transcript:YAL061W_mRNA;Name=YAL061W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL061W_mRNA-E1;rank=1
+I	sgd	CDS	33448	34701	.	+	0	ID=CDS:YAL061W;Parent=transcript:YAL061W_mRNA;protein_id=YAL061W

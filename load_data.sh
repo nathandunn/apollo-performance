@@ -124,69 +124,131 @@ function add_organisms(){
 
 
 function load_gff3s() {
-  FOUND_ORGANISMS_COUNT=$(arrow organisms get_organisms | jq '.[].directory' | uniq | wc -l )
-  echo "Found organisms : ${FOUND_ORGANISMS} vs ${#ORGANISMS[@]} ${FOUND_ORGANISMS_COUNT}"
-  COMMON_NAMES_STRING=$(arrow organisms get_organisms | jq '.[].commonName'  )
-  echo "Common names string ${COMMON_NAMES_STRING}"
-
+  echo "get load_gff3s"
   for organism in "${ORGANISMS[@]}" ;
   do
-    echo "Add gff3 for ${organism}"
     COMMON_NAMES=()
     while IFS= read -r line
     do
-      echo "adding $line"
       COMMON_NAMES+=($line)
     done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
-    echo "Common names ${COMMON_NAMES}"
-    echo "Populated genomes [  ${COMMON_NAMES[@]} ] "
-#    if [ "$FOUND_ORGANISMS" -eq ${#ORGANISMS[@]} ];
-#    then
-    echo "Adding genomes for ${organism}"
     for common_name in "${COMMON_NAMES[@]}" ;
     do
         time arrow annotations load_gff3  $(eval echo $common_name) --timing --batch_size=${BATCH_SIZE} "loaded-data/${organism}/raw/${organism}.gff"
     done
-#    fi
   done
 
 }
 
 function get_sequences() {
-  echo "getting sequences"
+  echo "get get_sequences"
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    COMMON_NAMES=()
+    while IFS= read -r line
+    do
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+        time arrow organisms get_sequences $(eval echo $common_name)
+    done
+  done
 }
 
-function change_organisms() {
-  echo "changing_organism"
+function get_features() {
+  echo "get get_features"
+  time arrow organisms get_sequences yeast1
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    COMMON_NAMES=()
+    while IFS= read -r line
+    do
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+      # if is yeast
+        if [ "$organism" = 'yeast' ]; then
+          time arrow annotations get_features --organism $(eval echo $common_name) --sequence IV
+        fi
+    done
+  done
 }
-
-
 
 function add_features() {
   echo "add add_features"
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    COMMON_NAMES=()
+    while IFS= read -r line
+    do
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+      # if is yeast
+        if [ "$organism" = 'yeast' ]; then
+#          time arrow annotations get_features --organism $(eval echo $common_name) --sequence IV
+          for i in $(seq 1 10); do
+            time arrow annotations load_gff3  $(eval echo $common_name) --timing "test-data/yeast_add_features/small${i}.gff"
+          done
+        fi
+    done
+  done
 }
 
 function multiple_user_add_features() {
   echo "add add_features multiple users"
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    COMMON_NAMES=()
+    while IFS= read -r line
+    do
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+      # if is yeast
+        if [ "$organism" = 'yeast' ]; then
+#          time arrow annotations get_features --organism $(eval echo $common_name) --sequence IV
+          for i in $(seq 1 10); do
+            time arrow annotations load_gff3  $(eval echo $common_name) --timing "test-data/yeast_add_features/small${i}.gff"&
+          done
+        fi
+    done
+  done
 }
 
 
-function export_gff3() {
-  echo "export gff3"
-}
+#function export_gff3() {
+#  echo "export gff3"
+#}
 
 
 function delete_features_from_organism() {
   echo "delete_features_from_organism"
+  for organism in "${ORGANISMS[@]}" ;
+  do
+    COMMON_NAMES=()
+    while IFS= read -r line
+    do
+      COMMON_NAMES+=($line)
+    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+    for common_name in "${COMMON_NAMES[@]}" ;
+    do
+      time arrow organisms deletE_features $(eval echo $common_name)
+    done
+  done
 }
 
 
 function perform_tests(){
   time get_sequences
-  time change_organisms
+  time get_features
   time add_features
   time multiple_user_add_features
-  time export_gff3
+#  time export_gff3
   time delete_features_from_organism
 }
 

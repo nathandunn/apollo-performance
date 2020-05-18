@@ -1,0 +1,14 @@
+XVI	sgd	gene	943880	944188	.	+	.	ID=gene:YPR203W;biotype=protein_coding;description=Putative protein of unknown function [Source:SGD%3BAcc:S000006407];gene_id=YPR203W;logic_name=sgd
+XVI	sgd	mRNA	943880	944188	.	+	.	ID=transcript:YPR203W_mRNA;Parent=gene:YPR203W;biotype=protein_coding;transcript_id=YPR203W_mRNA
+XVI	sgd	exon	943880	944188	.	+	.	Parent=transcript:YPR203W_mRNA;Name=YPR203W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YPR203W_mRNA-E1;rank=1
+XVI	sgd	CDS	943880	944188	.	+	0	ID=CDS:YPR203W;Parent=transcript:YPR203W_mRNA;protein_id=YPR203W
+###
+XVI	sgd	gene	944603	947701	.	+	.	ID=gene:YPR204W;biotype=protein_coding;description=DNA helicase encoded within the telomeric Y' element%3B Y' -helicase protein 1 [Source:SGD%3BAcc:S000006408];gene_id=YPR204W;logic_name=sgd
+XVI	sgd	mRNA	944603	947701	.	+	.	ID=transcript:YPR204W_mRNA;Parent=gene:YPR204W;biotype=protein_coding;transcript_id=YPR204W_mRNA
+XVI	sgd	exon	944603	947701	.	+	.	Parent=transcript:YPR204W_mRNA;Name=YPR204W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YPR204W_mRNA-E1;rank=1
+XVI	sgd	CDS	944603	947701	.	+	0	ID=CDS:YPR204W;Parent=transcript:YPR204W_mRNA;protein_id=YPR204W
+###
+XVI	sgd	gene	946856	947338	.	-	.	ID=gene:YPR204C-A;biotype=protein_coding;description=Protein of unknown function%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching [Source:SGD%3BAcc:S000028727];gene_id=YPR204C-A;logic_name=sgd
+XVI	sgd	mRNA	946856	947338	.	-	.	ID=transcript:YPR204C-A_mRNA;Parent=gene:YPR204C-A;biotype=protein_coding;transcript_id=YPR204C-A_mRNA
+XVI	sgd	exon	946856	947338	.	-	.	Parent=transcript:YPR204C-A_mRNA;Name=YPR204C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YPR204C-A_mRNA-E1;rank=1
+XVI	sgd	CDS	946856	947338	.	-	0	ID=CDS:YPR204C-A;Parent=transcript:YPR204C-A_mRNA;protein_id=YPR204C-A

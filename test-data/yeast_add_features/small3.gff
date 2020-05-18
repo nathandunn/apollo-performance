@@ -1,0 +1,9 @@
+I	sgd	gene	83335	84474	.	-	.	ID=gene:YAL032C;Name=PRP45;biotype=protein_coding;description=Protein required for pre-mRNA splicing%3B associates with the spliceosome and interacts with splicing factors Prp22p and Prp46p%3B orthologous to human transcriptional coactivator SKIP and can activate transcription of a reporter gene [Source:SGD%3BAcc:S000000030];gene_id=YAL032C;logic_name=sgd
+I	sgd	mRNA	83335	84474	.	-	.	ID=transcript:YAL032C_mRNA;Parent=gene:YAL032C;Name=PRP45;biotype=protein_coding;transcript_id=YAL032C_mRNA
+I	sgd	exon	83335	84474	.	-	.	Parent=transcript:YAL032C_mRNA;Name=YAL032C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL032C_mRNA-E1;rank=1
+I	sgd	CDS	83335	84474	.	-	0	ID=CDS:YAL032C;Parent=transcript:YAL032C_mRNA;protein_id=YAL032C
+###
+I	sgd	gene	84669	84977	.	+	.	ID=gene:YAL031W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps ORF GIP4/YAL031C [Source:SGD%3BAcc:S000028731];gene_id=YAL031W-A;logic_name=sgd
+I	sgd	mRNA	84669	84977	.	+	.	ID=transcript:YAL031W-A_mRNA;Parent=gene:YAL031W-A;biotype=protein_coding;transcript_id=YAL031W-A_mRNA
+I	sgd	exon	84669	84977	.	+	.	Parent=transcript:YAL031W-A_mRNA;Name=YAL031W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL031W-A_mRNA-E1;rank=1
+I	sgd	CDS	84669	84977	.	+	0	ID=CDS:YAL031W-A;Parent=transcript:YAL031W-A_mRNA;protein_id=YAL031W-A
