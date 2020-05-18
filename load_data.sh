@@ -9,9 +9,9 @@ APOLLO_DATA_DIRECTORY="/data/"
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-#ORGANISMS=("yeast") # broken types
+ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
-ORGANISMS=("fly") # works , very slow
+#ORGANISMS=("fly") # works , very slow
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
 
@@ -152,6 +152,48 @@ function load_gff3s() {
 
 }
 
+function get_sequences() {
+
+}
+
+function change_organisms() {
+
+}
+
+
+function change_organisms() {
+
+}
+
+function add_features() {
+
+}
+
+function multiple_user_add_features() {
+
+}
+
+
+function export_gff3() {
+
+}
+
+
+function delete_features_from_organism() {
+
+}
+
+function perform_tests(){
+  time load_gff3s
+  time get_sequences
+  time change_organisms
+  time add_features
+  time multiple_user_add_features
+  time export_gff3
+  time delete_features_from_organism
+}
+
+
 function kill_docker_process(){
  docker ps | tail -1 | cut -c1-15  | xargs docker kill
 }
@@ -161,7 +203,7 @@ time add_users
 time download_organism_data
 time prepare_organism_data
 time add_organisms
-time load_gff3s
+time perform_tests
 #time finish_process
 
 
