@@ -153,35 +153,33 @@ function load_gff3s() {
 }
 
 function get_sequences() {
-
+  echo "getting sequences"
 }
 
 function change_organisms() {
-
+  echo "changing_organism"
 }
 
 
-function change_organisms() {
-
-}
 
 function add_features() {
-
+  echo "add add_features"
 }
 
 function multiple_user_add_features() {
-
+  echo "add add_features multiple users"
 }
 
 
 function export_gff3() {
-
+  echo "export gff3"
 }
 
 
 function delete_features_from_organism() {
-
+  echo "delete_features_from_organism"
 }
+
 
 function perform_tests(){
   time get_sequences
