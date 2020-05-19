@@ -2,17 +2,17 @@
 
 #pip install ../python-apollo
 
-NUMBER_USERS=1
+NUMBER_USERS=2
 NUMBER_ORGANISMS_PER_ORGANISM=1
 BATCH_SIZE=5
 APOLLO_DATA_DIRECTORY="/data/"
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-ORGANISMS=("yeast") # broken types
+#ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
 #ORGANISMS=("fly") # works , very slow
-#ORGANISMS=("yeast" "fly") # broken types
+ORGANISMS=("yeast" "fly") # broken types
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
 
@@ -250,7 +250,7 @@ function perform_tests(){
   time add_features
 #  time multiple_user_add_features
 #  time export_gff3
-  time delete_features_from_organism
+#  time delete_features_from_organism
 }
 
 
