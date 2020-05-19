@@ -2,8 +2,8 @@
 
 #pip install ../python-apollo
 
-NUMBER_USERS=100
-NUMBER_ORGANISMS_PER_ORGANISM=10
+NUMBER_USERS=1
+NUMBER_ORGANISMS_PER_ORGANISM=1
 BATCH_SIZE=5
 APOLLO_DATA_DIRECTORY="/data/"
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
@@ -12,6 +12,7 @@ ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
 #ORGANISMS=("fly") # works , very slow
+#ORGANISMS=("yeast" "fly") # broken types
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
 
@@ -198,27 +199,27 @@ function add_features() {
   done
 }
 
-function multiple_user_add_features() {
-  echo "add add_features multiple users"
-  for organism in "${ORGANISMS[@]}" ;
-  do
-    COMMON_NAMES=()
-    while IFS= read -r line
-    do
-      COMMON_NAMES+=($line)
-    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
-    for common_name in "${COMMON_NAMES[@]}" ;
-    do
-      # if is yeast
-        if [ "$organism" = 'yeast' ]; then
-#          time arrow annotations get_features --organism $(eval echo $common_name) --sequence IV
-          for i in $(seq 1 10); do
-            time arrow annotations load_gff3  $(eval echo $common_name) --timing "test-data/yeast_add_features/small${i}.gff"&
-          done
-        fi
-    done
-  done
-}
+#function multiple_user_add_features() {
+#  echo "add add_features multiple users"
+#  for organism in "${ORGANISMS[@]}" ;
+#  do
+#    COMMON_NAMES=()
+#    while IFS= read -r line
+#    do
+#      COMMON_NAMES+=($line)
+#    done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
+#    for common_name in "${COMMON_NAMES[@]}" ;
+#    do
+#      # if is yeast
+#        if [ "$organism" = 'yeast' ]; then
+##          time arrow annotations get_features --organism $(eval echo $common_name) --sequence IV
+#          for i in $(seq 1 10); do
+#            time arrow annotations load_gff3  $(eval echo $common_name) --timing "test-data/yeast_add_features/small${i}.gff"&
+#          done
+#        fi
+#    done
+#  done
+#}
 
 
 #function export_gff3() {
@@ -237,7 +238,7 @@ function delete_features_from_organism() {
     done < <(arrow organisms get_organisms | jq '.[].commonName' | grep "$organism" )
     for common_name in "${COMMON_NAMES[@]}" ;
     do
-      time arrow organisms deletE_features $(eval echo $common_name)
+      time arrow organisms delete_features $(eval echo $common_name)
     done
   done
 }
@@ -247,7 +248,7 @@ function perform_tests(){
   time get_sequences
   time get_features
   time add_features
-  time multiple_user_add_features
+#  time multiple_user_add_features
 #  time export_gff3
   time delete_features_from_organism
 }
