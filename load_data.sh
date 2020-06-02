@@ -9,10 +9,10 @@ APOLLO_DATA_DIRECTORY="/data/"
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
-#ORGANISMS=("yeast") # broken types
+ORGANISMS=("yeast") # broken types
 #ORGANISMS=("worm") # works, but will need ot re-adjust he types
 #ORGANISMS=("fly") # works , very slow
-ORGANISMS=("yeast" "fly") # broken types
+#ORGANISMS=("yeast" "fly") # broken types
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
 
@@ -27,7 +27,8 @@ do
     case $arg in
         --nodocker)
         SHOULD_LAUNCH_DOCKER=0
-        APOLLO_DATA_DIRECTORY="/Users/nathandunn/repositories/apollo-performance/loaded-data/"
+#        APOLLO_DATA_DIRECTORY="/Users/nathandunn/repositories/apollo-performance/loaded-data/"
+        APOLLO_DATA_DIRECTORY="`pwd`/loaded-data/"
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-arrow.yml
         shift
         ;;
@@ -116,7 +117,7 @@ function add_organisms(){
     do
       for org_count in $(seq 1 "${NUMBER_ORGANISMS_PER_ORGANISM}");
       do
-        arrow organisms add_organism --genus "Foous${org_count}" --species "barus${organism}" "${organism}${org_count}" "$APOLLO_DATA_DIRECTORY${organism}"
+        arrow organisms add_organism --genus "Foous${org_count}" --species "barus${organism}" "${organism}${org_count}" "${APOLLO_DATA_DIRECTORY}${organism}"
       done
     done
   fi
@@ -263,8 +264,8 @@ time add_users
 time download_organism_data
 time prepare_organism_data
 time add_organisms
-time load_gff3s
-time perform_tests
+#time load_gff3s
+#time perform_tests
 #time finish_process
 
 
