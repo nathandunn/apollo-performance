@@ -10,8 +10,8 @@ ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 
 #ORGANISMS=("yeast" "fly" "fish" "worm"  "human")
 #ORGANISMS=("yeast") # broken types
-#ORGANISMS=("worm") # works, but will need ot re-adjust he types
-ORGANISMS=("fly") # works , very slow
+ORGANISMS=("worm") # works, but will need ot re-adjust he types
+#ORGANISMS=("fly") # works , very slow
 #ORGANISMS=("yeast" "fly") # broken types
 #ORGANISMS=("fish")
 #ORGANISMS=("human")
@@ -265,7 +265,7 @@ time download_organism_data
 time prepare_organism_data
 time add_organisms
 time load_gff3s
-time perform_tests
+#time perform_tests
 #time finish_process
 
 
